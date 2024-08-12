@@ -19,7 +19,7 @@ int *pint = &inteiro;
   printf("pfloat: %ul, pfloat+1: %ul, pfloat+20: %ul\n", pfloat, pfloat+1, pfloat+20);
   printf("pfloat: %ul, pfloat-1: %ul, pfloat-20: %ul\n", pfloat, pfloat-1, pfloat-20);
 
-  char *pdouble = (void *)&inteiro; 
+  double *pdouble = (double *)&inteiro; 
   printf("pdouble: %ul, pdouble+1: %ul, pdouble+20: %ul\n", pdouble, pdouble+1, pdouble+20);
   printf("pdouble: %ul, pdouble-1: %ul, pdouble-20: %ul\n", pdouble, pdouble-1, pdouble-20);
 
