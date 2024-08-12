@@ -10,6 +10,7 @@ int main () {
     printf("entre com o novo valor de i: ");
     int deu_certo = scanf("%d", p);
   printf("*p (i - valor de i): %d\n" , *p);
+  printf("endereço de i: %p\n", &i);
   return 0; 
 }
 
