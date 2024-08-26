@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+
 int main () {
   struct Pessoa {
   char nome[100];
@@ -16,12 +17,12 @@ int main () {
 
   printf("Escreva um nome:\n");
     //gets(pessoa2.nome);
-  int deu_certo = scanf("%99[^\n]s", pessoa2.nome); //[^\n]s = espaço e enter, 99 para limitar numero de caracteres
+  int deu_certo = scanf("%99[^\n]s%*c", pessoa2.nome); //[^\n]s = espaço e enter, 99 para limitar numero de caracteres
   printf("Escreva a idade:\n");
-     deu_certo = scanf("%d", &pessoa2.idade);
-  getchar();
+     deu_certo = scanf("%d*c", &pessoa2.idade);
+  getchar(); //limpar o buffer
   printf("Escreva o genero:\n");
-    deu_certo = scanf("%c", &pessoa2.genero);
+    deu_certo = scanf("%c*c", &pessoa2.genero);
 
   printf("Nome: %s\n", pessoa2.nome);
   printf("Idade: %d\n", pessoa2.idade);
