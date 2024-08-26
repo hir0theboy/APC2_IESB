@@ -16,7 +16,7 @@ int main () {
 
   printf("Escreva um nome:\n");
     //gets(pessoa2.nome);
-  int deu_certo = scanf("%[^\n]s", pessoa2.nome);
+  int deu_certo = scanf("%99[^\n]s", pessoa2.nome); //[^\n]s = espaço e enter, 99 para limitar numero de caracteres
   printf("Escreva a idade:\n");
      deu_certo = scanf("%d", &pessoa2.idade);
   getchar();
