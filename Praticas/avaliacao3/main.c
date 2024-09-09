@@ -129,10 +129,10 @@ int main() {
   for (int x = 0; x < 10; x++) {
     for (int y = 0; y < 10; y++) {
       if (x == y || x + y == 9) {
-      pixels3[(x*10) + y].rgba.a = 255;
-      pixels3[(x*10) + y].rgba.b = 255;
-      pixels3[(x*10) + y].rgba.g = 0;
-      pixels3[(x*10) + y].rgba.r = 0;
+      pixels3[(x*10) + y].rgba[0] = 255;
+      pixels3[(x*10) + y].rgba[1] = 255;
+      pixels3[(x*10) + y].rgba[2] = 0;
+      pixels3[(x*10) + y].rgba[3] = 0;
       }
     }
   }
