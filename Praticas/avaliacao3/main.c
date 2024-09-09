@@ -1,6 +1,20 @@
 #include <stdio.h>
 #include <math.h>
 
+union RGBA_Pixel {
+  int pixel; // 4 bytes
+   unsigned char rgba[4]; // 4 bytes
+ };
+
+// union RGBA_Pixel {
+//   int pixel; // 4 bytes
+//   struct rgba {
+//     unsigned char a, b, g, r;
+//   }; // 4 bytes
+// };
+
+
+
 // move o cursor para a posição (x,y) do console
 void gotoxy(int x, int y) {
   printf("\033[%d;%df", y, x);
@@ -64,38 +78,65 @@ int main() {
   // Exercício 1
   unsigned char *pchar2 = (unsigned char *)imagem2;
   // Solução:
-  for (int i = 0; i < 100 * 4; i += 4) {
-      pchar2[i + 3] = 0; 
+  union RGBA_Pixel *pixels = (union RGBA_Pixel *)imagem2;
+  int b = 3;
+  
+  for (int i = 0; i < 100; i++) {
+      pixels[i].rgba[3] = 0;
   }
 
   // Exercício 2
   unsigned char *pchar3 = (unsigned char *)imagem3;
   // Solução:
-  for(int b = 0; b < 100*4; b+=4) {
-    int media = round((pchar3[b+3]+pchar3[b+2]+pchar3[b+1]+pchar3[b])/4.0);
-    pchar3[b] = media;
-    pchar3[b+1] = media;
-    pchar3[b+2] = media;
-    pchar3[b+3] = media;
-  }
+  
+  // for(int b = 0; b < 100*4; b+=4) {
+  //   int media = round((pchar3[b+3]+pchar3[b+2]+pchar3[b+1]+pchar3[b])/4.0);
+  //   pchar3[b] = media;
+  //   pchar3[b+1] = media;
+  //   pchar3[b+2] = media;
+  //   pchar3[b+3] = media;
+  // }
 
+  
+  union RGBA_Pixel *pixels2 = (union RGBA_Pixel *)imagem3;
+   for(int b = 0; b < 100; b++) {
+     int media = round((pixels2[b].rgba[0]+pixels2[b].rgba[1]+pixels2[b].rgba[2]+pixels2[b].rgba[3])/4.0);
+     pixels2[b].rgba[0] = media;
+     pixels2[b].rgba[1] = media;
+     pixels2[b].rgba[2]= media;
+     pixels2[b].rgba[3] = media;
+   }
+
+  
 
   // Exercício 3
   pchar2 = (unsigned char *)imagem2;
   pchar3 = (unsigned char *)imagem3;
   unsigned char *pchar4 = (unsigned char *)imagem4;
   // Solução:
+  // for (int x = 0; x < 10; x++) {
+  //   for (int y = 0; y < 10; y++) {
+
+  //       if (x == y || x + y == 9) {
+  //           pchar4[(x*10 + y)*4] = 255;  
+  //           pchar4[(x*10 + y)*4 + 1] = 255; 
+  //           pchar4[(x*10 + y)*4 + 2] = 0; 
+  //           pchar4[(x*10 + y)*4 + 3] = 0;
+  //       }
+  //   }
+  // }
+  union RGBA_Pixel *pixels3 = (union RGBA_Pixel *)imagem4;
   for (int x = 0; x < 10; x++) {
     for (int y = 0; y < 10; y++) {
-
-        if (x == y || x + y == 9) {
-            pchar4[(x*10 + y)*4] = 255;  
-            pchar4[(x*10 + y)*4 + 1] = 255; 
-            pchar4[(x*10 + y)*4 + 2] = 0; 
-            pchar4[(x*10 + y)*4 + 3] = 0;
-        }
+      if (x == y || x + y == 9) {
+      pixels3[(x*10) + y].rgba.a = 255;
+      pixels3[(x*10) + y].rgba.b = 255;
+      pixels3[(x*10) + y].rgba.g = 0;
+      pixels3[(x*10) + y].rgba.r = 0;
+      }
     }
   }
+  
   
   // insira o seu código acima
 
